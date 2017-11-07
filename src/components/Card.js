@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { white, blue, black, purple, gray } from '../../utils/colors';
 import { NavigationActions } from 'react-navigation';
+import DeckDetail from './DeckDetail';
 
-const Card = ({ title, questions, navigation, item }) => {
+const Card = (props) => {
+  const { title, questions, navigation, item } = props
   return(
     <View style={styles.center}>
       <Text 
         style={styles.titleText} 
-        onPress={() => navigation.navigate('DeckDetail', {card: title})}
+        onPress={() => {
+          console.log('test')
+          props.navigation.navigate('DeckDetail', {card: title})
+        }}
       >
         {title}
       </Text>

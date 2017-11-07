@@ -10,8 +10,21 @@ export default class DeckDetail extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    getDeck(this.props.navigation.state.params.card)
+      .then(result => {
+        const deck = result;
+        this.setState((state) => {
+          return {
+            deck
+          }
+        })
+      })
+     
+  }
+
   render() {
-    const { screenProps } = this.props
+    const { deck } = this.props
     return (
       <View style={styles.container}>
       {typeof deck === 'object' && deck.title !== undefined

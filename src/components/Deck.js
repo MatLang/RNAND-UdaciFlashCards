@@ -46,9 +46,8 @@ export default class Deck extends Component {
 
   render(){
     return(
-      <View>
-        <Text>Test</Text>
-        <DeckNavigator />
+      <View style={{flex:1}}>
+        <DeckNavigator screenProps={this.props.navigation}/>
       </View>
     );
   };

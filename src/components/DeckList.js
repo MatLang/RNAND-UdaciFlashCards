@@ -39,7 +39,8 @@ export default class DeckList extends Component {
   }
 
   render(){
-    const { navigate } = this.props.navigation;
+    console.log(this.props.screenProps.navigate)
+    const { navigate } = this.props.screenProps;
     return (
 
       <View style={styles.container}>
@@ -47,7 +48,6 @@ export default class DeckList extends Component {
           ? <FlatList
               data={this.state.decks}
               renderItem={this.renderItem}
-              onClick={() => navigate('DeckDetail')}
               
             />
 
