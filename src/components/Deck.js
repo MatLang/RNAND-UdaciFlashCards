@@ -10,12 +10,16 @@ import { white, blue, black, purple, gray } from '../../utils/colors';
 const DeckNavigator = StackNavigator({
   Home: {
     screen: DeckList,
+    navigationOptions: {
+        header: null
+    }
   },
   NewCard: {
     screen: NewCard,
     navigationOptions: {
       title: 'New Card',
-      headerTintColor: white,
+      //headerMode:'none',
+      headerTintColor: purple,
       headerStyle: {
         backgroundColor: black
       }
@@ -47,8 +51,10 @@ export default class Deck extends Component {
   render(){
     return(
       <View style={{flex:1}}>
-        <DeckNavigator screenProps={this.props.navigation}/>
+        <DeckNavigator navigation={this.props.navigation}/>
       </View>
     );
   };
 }
+
+Deck.router = DeckNavigator.router;

@@ -47,7 +47,7 @@ const MainNavigator = StackNavigator({
   DeckDetail: {
     screen: DeckDetail,
     navigationOptions: ({navigation}) => ({
-      title: navigation.state.params.card,
+      title: 'React',
       headerTintColor: white,
       headerStyle: {
         backgroundColor: black,

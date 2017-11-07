@@ -39,8 +39,8 @@ export default class DeckList extends Component {
   }
 
   render(){
-    console.log(this.props.screenProps.navigate)
-    const { navigate } = this.props.screenProps;
+    console.log(this.props.navigation.navigate)
+    const { navigate } = this.props.navigation;
     return (
 
       <View style={styles.container}>

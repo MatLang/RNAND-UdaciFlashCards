@@ -24,7 +24,7 @@ export default class DeckDetail extends Component {
   }
 
   render() {
-    const { deck } = this.props
+    const { deck } = this.state;
     return (
       <View style={styles.container}>
       {typeof deck === 'object' && deck.title !== undefined
