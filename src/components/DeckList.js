@@ -9,11 +9,12 @@ export default class DeckList extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    const { navigate } = this.props.navigation;
   }
 
+ 
+
   componentDidMount(){
-    getDecks()
+      getDecks()
       .then(Decks => {
           const DecksArray = Object.keys(Decks).map(key => {
           const ar = Decks[key]
@@ -39,7 +40,6 @@ export default class DeckList extends Component {
   }
 
   render(){
-    console.log(this.props.navigation.navigate)
     const { navigate } = this.props.navigation;
     return (
 

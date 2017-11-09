@@ -4,7 +4,7 @@ import { TabNavigator, StackNavigator, NavigationActions } from 'react-navigatio
 import DeckDetail from './DeckDetail';
 import DeckList from './DeckList';
 import NewCard from './NewCard';
-import { getDeck } from '../../utils/api';
+import { getDeck, getDecks } from '../../utils/api';
 import { white, blue, black, purple, gray } from '../../utils/colors';
 
 const DeckNavigator = StackNavigator({
@@ -27,31 +27,41 @@ const DeckNavigator = StackNavigator({
   }
 })
 
+
+updateState = ({deck, answer, question }) => {
+  console.log(this.state)
+}
+
 export default class Deck extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  componentDidMount() {
-
-    /*const { navigation } = this.props;
-    getDeck(navigation.state.key)
-      .then(result => {
-        const deck = result;
+  componentDidMount(){
+    getDecks()
+      .then(Decks => {
+          const decks = Object.keys(Decks).map(key => {
+          const ar = Decks[key]
+          ar.key = key
+        
+          return ar
+        })
         this.setState((state) => {
           return {
-            deck
+            ...state,
+            decks
           }
         })
-      })*/
-     
+      })
   }
 
   render(){
     return(
       <View style={{flex:1}}>
-        <DeckNavigator navigation={this.props.navigation}/>
+        <DeckNavigator 
+          navigation={this.props.navigation}
+        />
       </View>
     );
   };
