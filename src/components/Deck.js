@@ -19,7 +19,7 @@ const DeckNavigator = StackNavigator({
     navigationOptions: {
       title: 'New Card',
       //headerMode:'none',
-      headerTintColor: purple,
+      headerTintColor: white,
       headerStyle: {
         backgroundColor: black
       }

@@ -24,6 +24,7 @@ export default class DeckDetail extends Component {
   }
 
   render() {
+    const { navigation } = this.props;
     const { deck } = this.state;
     return (
       <View style={styles.container}>
@@ -37,8 +38,8 @@ export default class DeckDetail extends Component {
             <TouchableOpacity style={styles.AndroidSubmitBtn}>
               <Text style={styles.submitBtnText}>Start Quiz</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.AndroidSubmitBtn}>
-              <Text style={styles.submitBtnText}>AddCards</Text>
+            <TouchableOpacity style={styles.AndroidSubmitBtn} onPress={()=>navigation.navigate('NewCard')}>
+              <Text style={styles.submitBtnText}>Add Card</Text>
             </TouchableOpacity>
           </View>
         </View>
