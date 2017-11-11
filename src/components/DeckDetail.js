@@ -16,14 +16,12 @@ export default class DeckDetail extends Component {
         .then(result => {
           const deck = result;
           this.setState((state) => {
-
             return {
               deck
             }
           })
         })
-    }
-    else {
+    } else {
       getDeck(this.props.state.routeName)
         .then(result => {
           const deck = result;
