@@ -4,7 +4,7 @@ import { NavigationActions } from 'react-navigation';
 
 
 export default class QuizView extends Component {
-  render(){
+  render() {
     return (
       <View>
         <Text>QuizView</Text>

@@ -25,12 +25,12 @@ export default class NewCard extends Component {
         }
       })
     });
-  
+
     setAnswer = ((answer) => {
       this.setState((state) => {
         return {
           ...state,
-          answer : answer
+          answer: answer
         }
       })
     });
@@ -38,42 +38,42 @@ export default class NewCard extends Component {
     const resetAction = NavigationActions.reset({
       index: 1,
       actions: [
-        NavigationActions.navigate({ routeName: 'Home'}),
-        NavigationActions.navigate({ routeName: 'DeckDetail', params:{deck:this.state.deck}})
+        NavigationActions.navigate({ routeName: 'Home' }),
+        NavigationActions.navigate({ routeName: 'DeckDetail', params: { deck: this.state.deck } })
       ],
       key: 1
     })
 
     submitQuestion = (deck) => {
-      return addCardToDeck(deck).then(
-        this.props.navigation.dispatch(resetAction),
-      );
+      return addCardToDeck(deck).then(() => {
+        this.props.navigation.dispatch(resetAction)
+      });
     }
 
     submitQuestion = submitQuestion.bind(this);
 
 
     return (
-      
+
       <View style={styles.center}>
         <FormLabel>
           Please Enter the Question
         </FormLabel>
-        <FormInput 
-          onChangeText={(event) => {setAnswer(event)}}
+        <FormInput
+          onChangeText={(event) => { setAnswer(event) }}
         />
         <FormLabel>
           Please Enter the Answer
         </FormLabel>
-        <FormInput 
-          onChangeText={(event) => {setQuestion(event)}}
+        <FormInput
+          onChangeText={(event) => { setQuestion(event) }}
         />
         <Button
           title='Submit'
           buttonStyle={styles.submitBtn}
-          onPress = {() => {
+          onPress={() => {
             submitQuestion(this.state);
-            }
+          }
           }
         />
       </View>

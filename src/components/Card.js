@@ -6,12 +6,12 @@ import DeckDetail from './DeckDetail';
 
 const Card = (props) => {
   const { title, questions, navigation, item } = props
-  return(
+  return (
     <View style={styles.center}>
-      <Text 
-        style={styles.titleText} 
+      <Text
+        style={styles.titleText}
         onPress={() => {
-          props.navigation.navigate('DeckDetail', {deck: title})
+          props.navigation.navigate('DeckDetail', { deck: title })
         }}
       >
         {title}
@@ -19,7 +19,7 @@ const Card = (props) => {
       <Text style={styles.baseText}>{questions.length} cards</Text>
     </View>
   );
-} 
+}
 
 
 export default Card;

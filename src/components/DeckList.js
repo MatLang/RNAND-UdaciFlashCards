@@ -11,14 +11,13 @@ export default class DeckList extends Component {
     this.state = {};
   }
 
-  componentDidMount(){
-    console.log('Component did Mount');
-      getDecks()
+  componentDidMount() {
+    getDecks()
       .then(Decks => {
-          const DecksArray = Object.keys(Decks).map(key => {
+        const DecksArray = Object.keys(Decks).map(key => {
           const ar = Decks[key]
           ar.key = key
-        
+
           return ar
         })
         this.setState((state) => {
@@ -29,25 +28,25 @@ export default class DeckList extends Component {
         })
       })
   }
-  
-  renderItem = ({item}) => {
+
+  renderItem = ({ item }) => {
     return (
       <View>
-        <Card {...item} navigation={this.props.navigation}/>
+        <Card {...item} navigation={this.props.navigation} />
       </View>
     )
   }
 
-  render(){
+  render() {
     return (
 
       <View style={styles.container}>
         {this.state.decks !== undefined && typeof this.state.decks === 'object'
           ? <FlatList
-              data={this.state.decks}
-              renderItem={this.renderItem}
-              
-            />
+            data={this.state.decks}
+            renderItem={this.renderItem}
+
+          />
           : <ActivityIndicator />
         }
       </View>

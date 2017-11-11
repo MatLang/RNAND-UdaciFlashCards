@@ -12,14 +12,14 @@ export default class NewDeck extends Component {
       deckName: '',
     };
   };
-  
+
   componentDidMount() {
     // const card = this.props.card
   };
-  
+
 
   render() {
-  
+
     setDeckName = ((deckName) => {
       this.setState((state) => {
         return {
@@ -28,50 +28,49 @@ export default class NewDeck extends Component {
         }
       })
     });
-    
+
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: 'Home'}),
+        NavigationActions.navigate({ routeName: 'Home' }),
       ],
       key: 0
     })
 
     submitDeck = (deck) => {
-        saveDeckTitle(deck).then(
-          this.props.navigation.navigate('Home')
-        )
+      saveDeckTitle(deck).then(() => {
+        this.props.navigation.dispatch(resetAction)
+      })
     }
 
     submitDeck = submitDeck.bind(this);
 
     return (
-      
+
       <View style={styles.center}>
         <FormLabel>
           Please Enter a Deck Name
         </FormLabel>
-        <FormInput 
-          onChangeText={(event) => {setDeckName(event)}}
+        <FormInput
+          onChangeText={(event) => { setDeckName(event) }}
         />
         <Button
           title='Submit'
           buttonStyle={styles.submitBtn}
-          onPress = {() => {
+          onPress={() => {
             submitDeck(this.state);
-            }
+          }
           }
         />
         <Button
           title='Clear Decks'
           buttonStyle={styles.submitBtn}
-          onPress = {() => {
+          onPress={() => {
             AsyncStorage.clear()
-              .then( () => {
-                this.props.navigation.navigate('Home')
-                }
-              );
-            }
+              .then(() => {
+                this.props.navigation.dispatch(resetAction)
+              });
+          }
           }
         />
       </View>
@@ -92,6 +91,7 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     backgroundColor: purple,
+    marginBottom: 10
 
   },
 })

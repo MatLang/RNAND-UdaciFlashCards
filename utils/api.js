@@ -2,13 +2,13 @@ import { AsyncStorage } from 'react-native';
 
 export const DECK_STORAGE_KEY = 'UdaciFlashCards'
 
-export function getDecks(){
+export function getDecks() {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
     .then(formatDeckResults)
 
 }
 
-export function getDeck(id){
+export function getDeck(id) {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
     .then((result) => {
       const decks = JSON.parse(result);
@@ -16,40 +16,31 @@ export function getDeck(id){
     })
 }
 
-export async function saveDeckTitle({ deckName }){
-  try {
-    const result = await AsyncStorage.getItem(DECK_STORAGE_KEY);
-    if (result !== null){
+export function saveDeckTitle({ deckName }) {
+  return AsyncStorage.getItem(DECK_STORAGE_KEY)
+    .then((result) => {
       const decks = JSON.parse(result);
       decks[deckName] = {
         title: deckName,
         questions: [],
       }
       const newDecks = JSON.stringify(decks);
-
-      try {
-        await AsyncStorage.setItem(DECK_STORAGE_KEY, newDecks);
-      } catch (error) {
-        console.log('Error while saving new Deck')
-      }
-      
-    }
-  } catch (error) {
-    console.log('Error while fetching Deck Data')
-  }
+      console.log('Card added');
+      return AsyncStorage.setItem(DECK_STORAGE_KEY, newDecks);
+    })
 }
 
-export function addCardToDeck({answer, question, deck}){
+export function addCardToDeck({ answer, question, deck }) {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
-  .then((result) => {
-    const decks = JSON.parse(result);
-    decks[deck].questions.push({question,answer})
-    const newDecks = JSON.stringify(decks);
-    return AsyncStorage.setItem(DECK_STORAGE_KEY, newDecks);
-  })
+    .then((result) => {
+      const decks = JSON.parse(result);
+      decks[deck].questions.push({ question, answer })
+      const newDecks = JSON.stringify(decks);
+      return AsyncStorage.setItem(DECK_STORAGE_KEY, newDecks);
+    })
 }
 
-function setDummyData(){
+function setDummyData() {
   const testData = {
     React: {
       title: 'React',
@@ -75,12 +66,12 @@ function setDummyData(){
     }
   }
   AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(testData));
-  return AsyncStorage.getItem(DECK_STORAGE_KEY).then((data)=>{
+  return AsyncStorage.getItem(DECK_STORAGE_KEY).then((data) => {
     return JSON.parse(data)
-})
+  })
 }
 
-function formatDeckResults (results) {
+function formatDeckResults(results) {
   return results === null
     ? setDummyData()
     : JSON.parse(results)
