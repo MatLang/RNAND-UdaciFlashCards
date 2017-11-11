@@ -41,13 +41,12 @@ export default class NewCard extends Component {
     });
 
     const resetAction = NavigationActions.reset({
-      index: 2,
+      index: 1,
       actions: [
-        NavigationActions.navigate({ routeName: 'Home'}),
         NavigationActions.navigate({ routeName: 'DeckList'}),
         NavigationActions.navigate({ routeName: 'DeckDetail', params:{deck:this.state.deck}})
       ],
-      //key: 2
+      key: 1
     })
 
 /*     const setParamsAction = NavigationActions.setParams({
