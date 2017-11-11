@@ -5,31 +5,21 @@ import NewCard from './NewCard';
 import { white, blue, black, purple, gray } from '../../utils/colors';
 
 export default class DeckDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+
+  state = { deck: null }
 
   componentDidMount() {
     if (this.props.navigation.state.params.deck !== undefined) {
       getDeck(this.props.navigation.state.params.deck)
         .then(result => {
           const deck = result;
-          this.setState((state) => {
-            return {
-              deck
-            }
-          })
+          this.setState({ deck })
         })
     } else {
       getDeck(this.props.state.routeName)
         .then(result => {
           const deck = result;
-          this.setState((state) => {
-            return {
-              deck
-            }
-          })
+          this.setState({ deck })
         })
     }
   }
@@ -39,7 +29,7 @@ export default class DeckDetail extends Component {
     const { deck } = this.state;
     return (
       <View style={styles.container}>
-        {typeof deck === 'object' && deck.title !== undefined
+        {deck && deck.title !== undefined
           ? <View style={styles.container}>
             <View style={{ flex: .7, alignItems: 'center', justifyContent: 'center', borderBottomWidth: .3, borderBottomColor: black }}>
               <Text style={styles.titleText}>{deck.title}</Text>
