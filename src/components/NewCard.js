@@ -15,11 +15,6 @@ export default class NewCard extends Component {
       answer: '',
     };
   };
-  
-  componentDidMount() {
-    // const card = this.props.card
-  };
-  
 
   render() {
     setQuestion = ((question) => {
@@ -43,22 +38,15 @@ export default class NewCard extends Component {
     const resetAction = NavigationActions.reset({
       index: 1,
       actions: [
-        NavigationActions.navigate({ routeName: 'DeckList'}),
+        NavigationActions.navigate({ routeName: 'Home'}),
         NavigationActions.navigate({ routeName: 'DeckDetail', params:{deck:this.state.deck}})
       ],
       key: 1
     })
 
-/*     const setParamsAction = NavigationActions.setParams({
-      params: { deck: this.state.deck},
-      key: 'DeckDetail',
-    })
-     */
     submitQuestion = (deck) => {
       return addCardToDeck(deck).then(
         this.props.navigation.dispatch(resetAction),
-        //this.props.navigation.dispatch(resetAction),
-        /* this.props.navigation.navigate('DeckDetail', {deck:this.state.deck}) */
       );
     }
 
