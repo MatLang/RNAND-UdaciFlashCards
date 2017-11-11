@@ -21,11 +21,14 @@ export function saveDeckTitle({title}){
 }
 
 export function addCardToDeck({answer, question, deck}){
+  console.log('Adding Card');
+  console.log(answer, question, deck)
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
   .then((result) => {
     const decks = JSON.parse(result);
     decks[deck].questions.push({question,answer})
     const newDecks = JSON.stringify(decks);
+    console.log('Adding Card 2');
     return AsyncStorage.setItem(DECK_STORAGE_KEY, newDecks);
   })
 }

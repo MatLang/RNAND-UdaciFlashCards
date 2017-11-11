@@ -11,26 +11,32 @@ const DeckNavigator = StackNavigator({
   Home: {
     screen: DeckList,
     navigationOptions: {
-        header: null
+        header: null,
     }
   },
   NewCard: {
     screen: NewCard,
     navigationOptions: {
+      tabBarVisible: false,
       title: 'New Card',
-      //headerMode:'none',
       headerTintColor: white,
       headerStyle: {
         backgroundColor: black
       }
     }
-  }
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+      navigationOptions: ({navigation}) => ({
+        title: navigation.state.params.card,
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: black,
+        },
+        tabBarVisible: false,
+      }),
+    }
 })
-
-
-updateState = ({deck, answer, question }) => {
-  console.log(this.state)
-}
 
 export default class Deck extends Component {
   constructor(props) {
@@ -59,9 +65,7 @@ export default class Deck extends Component {
   render(){
     return(
       <View style={{flex:1}}>
-        <DeckNavigator 
-          navigation={this.props.navigation}
-        />
+        <DeckNavigator />
       </View>
     );
   };

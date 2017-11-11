@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, Button, StyleSheet, ScrollView, FlatList, ActivityIndicator, AsyncStorage } from 'react-native';
 import { NavigationActions, StackNavigator } from 'react-navigation';
 import Card from './Card';
 import { white, blue, black, purple } from '../../utils/colors';
@@ -40,7 +40,6 @@ export default class DeckList extends Component {
   }
 
   render(){
-    const { navigate } = this.props.navigation;
     return (
 
       <View style={styles.container}>
@@ -50,7 +49,6 @@ export default class DeckList extends Component {
               renderItem={this.renderItem}
               
             />
-
           : <ActivityIndicator />
         }
       </View>

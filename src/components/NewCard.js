@@ -16,7 +16,7 @@ export default class NewCard extends Component {
   };
   
   componentDidMount() {
-    const card = this.props.card
+    // const card = this.props.card
   };
   
 
@@ -39,12 +39,16 @@ export default class NewCard extends Component {
       })
     });
     
-    submitQuestion = () => {
-      addCardToDeck(this.state);
+    submitQuestion = (deck) => {
+      return addCardToDeck(deck).then(
+        this.props.navigation.navigate('DeckDetail', {card: this.state.deck})
+      );
     }
 
     submitQuestion = submitQuestion.bind(this);
+
     return (
+      
       <View style={styles.center}>
         <FormLabel>
           Please Enter a Question
@@ -61,10 +65,10 @@ export default class NewCard extends Component {
         <Button
           title='Submit'
           buttonStyle={styles.submitBtn}
-          onPress = { () => {
-            submitQuestion();
-            this.props.navigation.navigate('Home', {question: this.state.question, answer: this.state.answer, deck:this.state.deck});
-          }}
+          onPress = {() => {
+            submitQuestion(this.state);
+            }
+          }
         />
       </View>
     );

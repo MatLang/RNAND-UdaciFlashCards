@@ -13,6 +13,7 @@ export default class DeckDetail extends Component {
   componentDidMount() {
     getDeck(this.props.navigation.state.params.card)
       .then(result => {
+        console.log(result)
         const deck = result;
         this.setState((state) => {
           return {
