@@ -11,7 +11,7 @@ const Card = (props) => {
       <Text 
         style={styles.titleText} 
         onPress={() => {
-          props.navigation.navigate('DeckDetail', {card: title})
+          props.navigation.navigate('DeckDetail', {deck: title})
         }}
       >
         {title}

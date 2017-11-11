@@ -4,17 +4,18 @@ import { TabNavigator, StackNavigator, NavigationActions } from 'react-navigatio
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons'
 import DeckList from './src/components/DeckList';
 import NewDeck from './src/components/NewDeck';
+import NewCard from './src/components/NewCard';
 import QuizView from './src/components/QuizView';
 import DeckDetail from './src/components/DeckDetail';
-import Deck from './src/components/Deck';
 
 import { white, blue, black, purple } from './utils/colors';
 
 const Tabs = TabNavigator({
   Home: {
-    screen: Deck,
+    screen: DeckList,
     
     navigationOptions: {
+      header: null,
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color="white"/>,
       
@@ -23,7 +24,7 @@ const Tabs = TabNavigator({
   NewDeck: {
     screen: NewDeck,
     navigationOptions:{
-      header: null,
+      header: null, 
       tabBarLabel: 'New Deck',
       tabBarIcon: ({ tintColor }) => <Entypo name='new-message' size={30} color="white"/>
     }
@@ -44,7 +45,35 @@ const Tabs = TabNavigator({
 const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
-  }
+  },
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+        header: null,
+    }
+  },
+  NewCard: {
+    screen: NewCard,
+    navigationOptions: {
+      tabBarVisible: false,
+      title: 'New Card',
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: black
+      }
+    }
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+      navigationOptions: ({navigation}) => ({
+        title: 'navigation.state.params.deck',
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: black,
+        },
+        tabBarVisible: false,
+      }),
+    }
 })
 
 export default class App extends React.Component {

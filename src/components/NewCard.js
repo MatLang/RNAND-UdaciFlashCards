@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 import { white, blue, black, purple } from '../../utils/colors';
 import { addCardToDeck } from '../../utils/api';
@@ -41,23 +42,39 @@ export default class NewCard extends Component {
     
     submitQuestion = (deck) => {
       return addCardToDeck(deck).then(
-        this.props.navigation.navigate('DeckDetail', {card: this.state.deck})
+        this.props.navigation.dispatch(resetAction),
+        this.props.navigation.dispatch(setParamsAction),
+        /* this.props.navigation.navigate('DeckDetail', {deck:this.state.deck}) */
       );
     }
 
     submitQuestion = submitQuestion.bind(this);
 
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'DeckList'}),
+        NavigationActions.navigate({ routeName: 'DeckDetail'})
+      ],
+      key: 0
+    })
+
+    const setParamsAction = NavigationActions.setParams({
+      params: { deck: this.state.deck},
+      key: 'DeckDetail',
+    })
+
     return (
       
       <View style={styles.center}>
         <FormLabel>
-          Please Enter a Question
+          Please Enter the Question
         </FormLabel>
         <FormInput 
           onChangeText={(event) => {setAnswer(event)}}
         />
         <FormLabel>
-          Please enter the Answer
+          Please Enter the Answer
         </FormLabel>
         <FormInput 
           onChangeText={(event) => {setQuestion(event)}}

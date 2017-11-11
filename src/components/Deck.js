@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/* import React, { Component } from 'react';
 import { Text, View, ActivityIndicator, TouchableOpacity, StyleSheet } from 'react-native';
 import { TabNavigator, StackNavigator, NavigationActions } from 'react-navigation';
 import DeckDetail from './DeckDetail';
@@ -8,7 +8,7 @@ import { getDeck, getDecks } from '../../utils/api';
 import { white, blue, black, purple, gray } from '../../utils/colors';
 
 const DeckNavigator = StackNavigator({
-  Home: {
+  DeckList: {
     screen: DeckList,
     navigationOptions: {
         header: null,
@@ -71,4 +71,4 @@ export default class Deck extends Component {
   };
 }
 
-Deck.router = DeckNavigator.router;
+Deck.router = DeckNavigator.router; */

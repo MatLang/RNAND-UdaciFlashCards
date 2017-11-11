@@ -8,12 +8,27 @@ export default class DeckDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    console.log('State of DeckDetail ************',this.props);
+    console.log(typeof this.props.navigation.state.params.deck);
   }
 
   componentDidMount() {
-    getDeck(this.props.navigation.state.params.card)
+    console.log(this.props.navigation.state.params.deck);
+    if(this.props.navigation.state.params.deck !== undefined){
+      getDeck(this.props.navigation.state.params.deck)
       .then(result => {
-        console.log(result)
+        const deck = result;
+        this.setState((state) => {
+          
+          return {
+            deck
+          }
+        })
+      })
+    }
+    else {
+      getDeck(this.props.deck)
+      .then(result => {
         const deck = result;
         this.setState((state) => {
           return {
@@ -21,7 +36,7 @@ export default class DeckDetail extends Component {
           }
         })
       })
-     
+    } 
   }
 
   render() {
