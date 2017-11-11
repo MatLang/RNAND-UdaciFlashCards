@@ -39,30 +39,32 @@ export default class NewCard extends Component {
         }
       })
     });
-    
+
+    const resetAction = NavigationActions.reset({
+      index: 2,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home'}),
+        NavigationActions.navigate({ routeName: 'DeckList'}),
+        NavigationActions.navigate({ routeName: 'DeckDetail', params:{deck:this.state.deck}})
+      ],
+      //key: 2
+    })
+
+/*     const setParamsAction = NavigationActions.setParams({
+      params: { deck: this.state.deck},
+      key: 'DeckDetail',
+    })
+     */
     submitQuestion = (deck) => {
       return addCardToDeck(deck).then(
         this.props.navigation.dispatch(resetAction),
-        this.props.navigation.dispatch(setParamsAction),
+        //this.props.navigation.dispatch(resetAction),
         /* this.props.navigation.navigate('DeckDetail', {deck:this.state.deck}) */
       );
     }
 
     submitQuestion = submitQuestion.bind(this);
 
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      actions: [
-        NavigationActions.navigate({ routeName: 'DeckList'}),
-        NavigationActions.navigate({ routeName: 'DeckDetail'})
-      ],
-      key: 0
-    })
-
-    const setParamsAction = NavigationActions.setParams({
-      params: { deck: this.state.deck},
-      key: 'DeckDetail',
-    })
 
     return (
       

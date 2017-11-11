@@ -15,6 +15,7 @@ export default class DeckDetail extends Component {
   componentDidMount() {
     console.log(this.props.navigation.state.params.deck);
     if(this.props.navigation.state.params.deck !== undefined){
+      console.log('Boooh')
       getDeck(this.props.navigation.state.params.deck)
       .then(result => {
         const deck = result;
@@ -27,7 +28,8 @@ export default class DeckDetail extends Component {
       })
     }
     else {
-      getDeck(this.props.deck)
+      console.log('bahhh')
+      getDeck(this.props.state.routeName)
       .then(result => {
         const deck = result;
         this.setState((state) => {
