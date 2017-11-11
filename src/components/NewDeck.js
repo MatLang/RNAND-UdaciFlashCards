@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, AsyncStorage } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
 import { white, blue, black, purple } from '../../utils/colors';
@@ -29,20 +29,20 @@ export default class NewDeck extends Component {
       })
     });
     
-    submitDeck = (deck) => {
-      return saveDeckTitle(deck).then(
-        this.props.navigation.navigate('DeckList')
-      );
-    }
-
-/*     const resetAction = NavigationActions.reset({
+    const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
-        NavigationActions.navigate({ routeName: 'DeckList'}),
-        NavigationActions.navigate({ routeName: 'DeckDetail'})
+        NavigationActions.navigate({ routeName: 'Home'}),
       ],
       key: 0
-    }) */
+    })
+
+    submitDeck = (deck) => {
+        saveDeckTitle(deck),
+        this.props.navigation.navigate('Home')
+    }
+
+    submitDeck = submitDeck.bind(this);
 
     return (
       
@@ -58,6 +58,18 @@ export default class NewDeck extends Component {
           buttonStyle={styles.submitBtn}
           onPress = {() => {
             submitDeck(this.state);
+            }
+          }
+        />
+        <Button
+          title='Clear Decks'
+          buttonStyle={styles.submitBtn}
+          onPress = {() => {
+            AsyncStorage.clear()
+              .then( () => {
+                this.props.navigation.navigate('Home')
+                }
+              );
             }
           }
         />

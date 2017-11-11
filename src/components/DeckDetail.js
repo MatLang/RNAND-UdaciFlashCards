@@ -8,14 +8,10 @@ export default class DeckDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    console.log('State of DeckDetail ************',this.props);
-    console.log(typeof this.props.navigation.state.params.deck);
   }
 
   componentDidMount() {
-    console.log(this.props.navigation.state.params.deck);
     if(this.props.navigation.state.params.deck !== undefined){
-      console.log('Boooh')
       getDeck(this.props.navigation.state.params.deck)
       .then(result => {
         const deck = result;
@@ -28,7 +24,6 @@ export default class DeckDetail extends Component {
       })
     }
     else {
-      console.log('bahhh')
       getDeck(this.props.state.routeName)
       .then(result => {
         const deck = result;

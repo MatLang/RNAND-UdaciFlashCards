@@ -11,9 +11,8 @@ export default class DeckList extends Component {
     this.state = {};
   }
 
- 
-
   componentDidMount(){
+    console.log('Component did Mount');
       getDecks()
       .then(Decks => {
           const DecksArray = Object.keys(Decks).map(key => {
