@@ -66,13 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   center: {
-    //flex: 1,
     height: 150,
     justifyContent: 'center',
-    alignItems: 'center',
-    //marginLeft: 30,
-    //marginRight: 30,
-    //borderBottomWidth: .1,
-    //borderBottomColor: black
   },
 })

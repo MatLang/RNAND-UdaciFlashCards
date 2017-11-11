@@ -59,30 +59,20 @@ const styles = StyleSheet.create({
     height: 45,
     padding: 10,
     borderRadius: 2,
-    //alignSelf: 'center',
-    //justifyContent: 'center',
     alignItems: 'center',
 
   },
   submitBtnText: {
     color: white,
     fontSize: 18,
-    //textAlign: 'center',
   },
   container: {
     flex: 1,
     flexDirection: 'column',
-    //alignItems: 'center'
   },
   center: {
-    //flex: 1,
-    //height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-    //marginLeft: 30,
-    //marginRight: 30,
-    //borderWidth: .5,
-    //borderColor: black
   },
   titleText: {
     fontSize: 18,
