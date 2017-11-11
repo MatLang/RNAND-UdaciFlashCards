@@ -38,8 +38,9 @@ export default class NewDeck extends Component {
     })
 
     submitDeck = (deck) => {
-        saveDeckTitle(deck),
-        this.props.navigation.navigate('Home')
+        saveDeckTitle(deck).then(
+          this.props.navigation.navigate('Home')
+        )
     }
 
     submitDeck = submitDeck.bind(this);

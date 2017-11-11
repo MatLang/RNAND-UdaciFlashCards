@@ -16,18 +16,27 @@ export function getDeck(id){
     })
 }
 
-export function saveDeckTitle({ deckName }){
-  return AsyncStorage.getItem(DECK_STORAGE_KEY)
-    .then((result) => {
+export async function saveDeckTitle({ deckName }){
+  try {
+    const result = await AsyncStorage.getItem(DECK_STORAGE_KEY);
+    if (result !== null){
       const decks = JSON.parse(result);
       decks[deckName] = {
         title: deckName,
         questions: [],
       }
       const newDecks = JSON.stringify(decks);
-      console.log('Card added');
-      return AsyncStorage.setItem(DECK_STORAGE_KEY, newDecks);
-    })
+
+      try {
+        await AsyncStorage.setItem(DECK_STORAGE_KEY, newDecks);
+      } catch (error) {
+        console.log('Error while saving new Deck')
+      }
+      
+    }
+  } catch (error) {
+    console.log('Error while fetching Deck Data')
+  }
 }
 
 export function addCardToDeck({answer, question, deck}){
