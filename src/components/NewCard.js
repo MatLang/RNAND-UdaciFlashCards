@@ -6,7 +6,7 @@ import { white, blue, black, purple } from '../../utils/colors';
 import { addCardToDeck } from '../../utils/api';
 
 export default class NewCard extends Component {
-/*   constructor(props) {
+  constructor(props) {
     super(props);
     const { deck } = this.props.navigation.state.params;
     this.state = {
@@ -14,16 +14,7 @@ export default class NewCard extends Component {
       question: '',
       answer: '',
     };
-  }; */
-
-  componentDidMount() {
-    const { deck } = this.props.navigation.state.params;
-    state = {
-      deck,
-      question: '',
-      answer: '',
-    };
-  }  
+  };
 
   render() {
     setQuestion = ((question) => {
