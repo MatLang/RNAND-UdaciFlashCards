@@ -36,7 +36,7 @@ export default class DeckDetail extends Component {
               <Text style={styles.baseText}>{deck.questions.length} cards</Text>
             </View>
             <View style={{ flex: .3, justifyContent: 'center', borderBottomWidth: .3, borderBottomColor: black }}>
-              <TouchableOpacity style={styles.AndroidSubmitBtn}>
+              <TouchableOpacity style={styles.AndroidSubmitBtn} onPress={() => navigation.navigate('QuizContainer', { deck })}>
                 <Text style={styles.submitBtnText}>Start Quiz</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.AndroidSubmitBtn} onPress={() => navigation.navigate('NewCard', { deck: deck.title })}>

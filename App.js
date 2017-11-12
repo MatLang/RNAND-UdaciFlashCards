@@ -5,7 +5,7 @@ import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons'
 import DeckList from './src/components/DeckList';
 import NewDeck from './src/components/NewDeck';
 import NewCard from './src/components/NewCard';
-import QuizView from './src/components/QuizView';
+import QuizContainer from './src/components/QuizContainer';
 import DeckDetail from './src/components/DeckDetail';
 
 import { white, blue, black, purple } from './utils/colors';
@@ -73,7 +73,18 @@ const MainNavigator = StackNavigator({
         },
         tabBarVisible: false,
       }),
-    }
+    },
+    QuizContainer: {
+      screen: QuizContainer,
+      navigationOptions: {
+        tabBarVisible: false,
+        title: 'Quiz',
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: black
+        }
+      }
+    },
 })
 
 export default class App extends React.Component {
