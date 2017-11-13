@@ -1,3 +1,7 @@
+Tested with Android (Genymotion & Samsung Galaxy S6, API 22)
+
+Thanks a lot to my Udacity Mentor [Htet Myet Aung](https://www.linkedin.com/in/htet-myet-aung-353449143/) for helping me out.
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).

@@ -55,7 +55,6 @@ export function setLocalNotification() {
 export function getDecks() {
   return AsyncStorage.getItem(DECK_STORAGE_KEY)
     .then(formatDeckResults)
-
 }
 
 export function getDeck(id) {

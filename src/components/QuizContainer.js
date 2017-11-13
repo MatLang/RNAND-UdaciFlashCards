@@ -17,10 +17,6 @@ export default class QuizContainer extends Component {
     };
   };
 
-  componentDidMount() {
-    console.log(this.state.deck);
-  }
-
   restartQuiz = () => {
     this.setState((state) => {
       return {
