@@ -7,7 +7,8 @@ import NewDeck from './src/components/NewDeck';
 import NewCard from './src/components/NewCard';
 import QuizContainer from './src/components/QuizContainer';
 import DeckDetail from './src/components/DeckDetail';
-import { setLocalNotification } from './utils/api'
+import { setLocalNotification } from './utils/api';
+import { Notifications } from 'expo';
 
 import { white, blue, black, purple } from './utils/colors';
 
@@ -91,7 +92,7 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
 
   componentDidMount() {
-    setLocalNotification()
+    setLocalNotification();
   }
 
   render() {

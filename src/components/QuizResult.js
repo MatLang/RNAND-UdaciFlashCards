@@ -18,7 +18,7 @@ export default class QuizResult extends Component {
 
   componentDidMount() {
     clearLocalNotification()
-      .then(setLocalNotification())
+      .then(() => setLocalNotification())
   }
 
   render() {

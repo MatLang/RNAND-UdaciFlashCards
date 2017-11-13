@@ -3,53 +3,48 @@ import { Notifications, Permissions } from 'expo'
 
 
 export const DECK_STORAGE_KEY = 'UdaciFlashCards'
-export const NOTIFICATION_KEY = 'UdaciFlashCards:notifications'
+export const NOTIFICATION_KEY = 'UdaciFlashCards:Notifications'
 
 export function clearLocalNotification() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
-    .then(Notifications.cancelAllScheduledNotificationsAsync)
+    .then(() => {
+      Notifications.cancelAllScheduledNotificationsAsync()}
+    )
 }
 
-function createNotification() {
-  return {
-    title: 'Keep learning!',
-    body: "Please don't forget to revise your decks",
-    android: {
-      sound: true,
-      priority: 'high',
-      sticky: false,
-      vibrate: true,
-    }
+const createNotification = () => ({
+  title: 'Keep learning!',
+  body: "Don't forget to revise your decks",
+  android: {
+    sound: true,
+    priority: 'high',
+    sticky: false,
+    vibrate: true
   }
-}
+});
 
 export function setLocalNotification() {
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
-    .then((data) => {
+    .then(data => {
       if (data === null) {
-        Permissions.askAsync(Permissions.NOTIFICATIONS)
-          .then(({ status }) => {
-            if (status === 'granted') {
-              Notifications.cancelAllScheduledNotificationsAsync()
+        Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
+          if (status === 'granted') {
+            Notifications.cancelAllScheduledNotificationsAsync();
 
-              let tomorrow = new Date()
-              tomorrow.setDate(tomorrow.getDate() + 1)
-              tomorrow.setHours(20)
-              tomorrow.setMinutes(0)
-
-              Notifications.scheduleLocalNotificationAsync(
-                createNotification(),
-                {
-                  time: tomorrow,
-                  repeat: 'day',
-                }
-              )
-              AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
-            }
-          })
+            let tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1000);
+/*             tomorrow.setHours(21);
+            tomorrow.setMinutes(0); */
+            Notifications.scheduleLocalNotificationAsync(createNotification(), {
+              time: tomorrow,
+              repeat: 'day'
+            });
+            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+          }
+        });
       }
-    })
+    });
 }
 
 export function getDecks() {
