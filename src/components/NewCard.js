@@ -60,13 +60,13 @@ export default class NewCard extends Component {
           Please Enter the Question
         </FormLabel>
         <FormInput
-          onChangeText={(event) => { setAnswer(event) }}
+          onChangeText={(event) => { setQuestion(event) }}
         />
         <FormLabel>
           Please Enter the Answer
         </FormLabel>
         <FormInput
-          onChangeText={(event) => { setQuestion(event) }}
+          onChangeText={(event) => { setAnswer(event) }}
         />
         <Button
           title='Submit'

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { white, blue, black, purple, red, green, gray } from '../../utils/colors';
+import { clearLocalNotification, setLocalNotification } from '../../utils/api';
 
 export default class QuizResult extends Component {
   constructor(props) {
@@ -16,7 +17,8 @@ export default class QuizResult extends Component {
   };
 
   componentDidMount() {
-
+    clearLocalNotification()
+      .then(setLocalNotification())
   }
 
   render() {
