@@ -12,7 +12,7 @@ export default class QuizView extends Component {
           questionsCorrect: 0,
           deckLength: deck.questions.length
         }; */
-    this.state = {showAnswer: false}
+    this.state = { showAnswer: false }
   };
 
   componentDidMount() {
@@ -39,42 +39,60 @@ export default class QuizView extends Component {
 
     return (
       <View style={styles.container}>
-        <Text style={{marginTop: 10, marginLeft: 10}}>{currentQuestion+1}/{deckLength}</Text>
-        <View style={{flex:.7, justifyContent: 'space-between' }}>
-        <Text 
-          style={styles.titleText}
-        >
-          {deck.questions[currentQuestion].question}
-        </Text>
-        {this.state.showAnswer
-          ? 
-          <View style={{justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={styles.baseText}>{deck.questions[currentQuestion].answer}</Text>
-            <Text style={styles.baseText} onPress={() => this.showAnswer()}>Hide Answer</Text>
+        {deckLength == 0
+          ? <View style={{ flex: 1, justifyContent: 'center' }}>
+            <Text style={styles.titleText}>
+              Please submit some questions first.
+              </Text>
+            <TouchableOpacity
+              style={styles.AndroidSubmitBtn}
+              onPress={() => this.props.goBack()}
+            >
+              <Text style={styles.submitBtnText}>Go to Deck</Text>
+            </TouchableOpacity>
           </View>
-          : <Text style={styles.baseText} onPress={() => this.showAnswer()}>Show Answer</Text>
+          : <View style={{ flex: .8, justifyContent: 'space-between' }}>
+            <Text style={{ marginTop: 10, marginLeft: 10 }}>{currentQuestion + 1}/{deckLength}</Text>
+            <Text style={styles.titleText}>
+              {deck.questions[currentQuestion].question}
+            </Text>
+            {this.state.showAnswer
+              ? <View style={styles.center}>
+                <Text style={styles.baseText}>{deck.questions[currentQuestion].answer}</Text>
+                <Text style={styles.baseText} onPress={() => this.showAnswer()}>Hide Answer</Text>
+              </View>
+              : <Text style={styles.baseText} onPress={() => this.showAnswer()}>Show Answer</Text>
+            }
+            <View style={{ flex: .2 }}>
+              <TouchableOpacity
+                style={styles.correctAnswer}
+                onPress={() => this.props.setCorrectAnswer()}
+              >
+                <Text style={styles.submitBtnText}>Correct</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.incorrectAnswer}
+                onPress={() => this.props.setIncorrectAnswer()}
+              >
+                <Text style={styles.submitBtnText}>Incorrect</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
         }
-        </View>
-        <View style={{flex:.3}}>
-        <TouchableOpacity
-          style={styles.correctAnswer}
-          onPress={() => this.props.setCorrectAnswer()}
-        >
-          <Text style={styles.submitBtnText}>Correct</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.incorrectAnswer}
-          onPress={() => this.props.setIncorrectAnswer()}
-        >
-          <Text style={styles.submitBtnText}>Incorrect</Text>
-        </TouchableOpacity>
-        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  AndroidSubmitBtn: {
+    backgroundColor: purple,
+    margin: 10,
+    height: 45,
+    padding: 10,
+    borderRadius: 2,
+    alignItems: 'center',
+  },
   correctAnswer: {
     backgroundColor: green,
     margin: 10,

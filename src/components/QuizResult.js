@@ -6,13 +6,13 @@ import { white, blue, black, purple, red, green, gray } from '../../utils/colors
 export default class QuizResult extends Component {
   constructor(props) {
     super(props);
-/*     this.state = {
-      deck,
-      currentQuestion: 0,
-      questionsCorrect: 0,
-      deckLength: deck.questions.length
-    }; */
-    this.state={}
+    /*     this.state = {
+          deck,
+          currentQuestion: 0,
+          questionsCorrect: 0,
+          deckLength: deck.questions.length
+        }; */
+    this.state = {}
   };
 
   componentDidMount() {
@@ -23,22 +23,22 @@ export default class QuizResult extends Component {
     const { currentQuestion, questionsCorrect, deckLength, deck } = this.props.quizStatus;
     return (
       <View style={styles.container}>
-        <View style={{flex:.7, justifyContent: 'center'}}>
+        <View style={{ flex: .7, justifyContent: 'center' }}>
           <Text style={styles.titleText}>Result:</Text>
-          <Text style={styles.titleText}>{((questionsCorrect/deckLength)*100).toFixed(2)}% of your answers are correct!</Text>
+          <Text style={styles.titleText}>{((questionsCorrect / deckLength) * 100).toFixed(2)}% of your answers are correct!</Text>
         </View>
-        <View style={{flex:.3}}>
+        <View style={{ flex: .3 }}>
           <TouchableOpacity
             style={styles.AndroidSubmitBtn}
-            onPress={()=>{}}
+            onPress={() => this.props.restartQuiz()}
           >
-            <Text onPress={() => this.props.restartQuiz()} style={styles.submitBtnText}>Restart Quiz</Text>
+            <Text style={styles.submitBtnText}>Restart Quiz</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.AndroidSubmitBtn}
-            onPress={()=>{}}
+            onPress={() => this.props.goBack()}
           >
-            <Text onPress={() => this.props.goBack()} style={styles.submitBtnText}>Go To Deck</Text>
+            <Text style={styles.submitBtnText}>Go To Deck</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 2,
     alignItems: 'center',
-
   },
   submitBtnText: {
     color: white,

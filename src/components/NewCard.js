@@ -88,6 +88,5 @@ const styles = StyleSheet.create({
   },
   submitBtn: {
     backgroundColor: purple,
-
   },
 })

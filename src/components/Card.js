@@ -21,7 +21,6 @@ const Card = (props) => {
   );
 }
 
-
 export default Card;
 
 const styles = StyleSheet.create({
@@ -29,11 +28,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: white
-  },
-  row: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
   },
   center: {
     height: 150,

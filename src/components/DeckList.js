@@ -60,11 +60,6 @@ const styles = StyleSheet.create({
     //padding: 10,
     backgroundColor: white
   },
-  row: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
-  },
   center: {
     height: 150,
     justifyContent: 'center',

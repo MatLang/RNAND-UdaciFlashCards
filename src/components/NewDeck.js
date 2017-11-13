@@ -13,11 +13,6 @@ export default class NewDeck extends Component {
     };
   };
 
-  componentDidMount() {
-    // const card = this.props.card
-  };
-
-
   render() {
 
     setDeckName = ((deckName) => {
@@ -86,6 +81,5 @@ const styles = StyleSheet.create({
   submitBtn: {
     backgroundColor: purple,
     marginBottom: 10
-
   },
 })

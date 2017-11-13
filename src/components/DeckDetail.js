@@ -1,39 +1,68 @@
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator, TouchableOpacity, StyleSheet, StackNavigator } from 'react-native';
+import { Text, View, ActivityIndicator, TouchableOpacity, StyleSheet, StackNavigator, Animated } from 'react-native';
 import { getDeck } from '../../utils/api';
 import NewCard from './NewCard';
 import { white, blue, black, purple, gray } from '../../utils/colors';
 
 export default class DeckDetail extends Component {
 
-  state = { deck: null }
+  state = {
+    deck: null,
+    bounceValue: new Animated.Value(0),
+  }
 
   componentDidMount() {
     if (this.props.navigation.state.params.deck !== undefined) {
       getDeck(this.props.navigation.state.params.deck)
         .then(result => {
+          this.state.bounceValue.setValue(1.5);
+          Animated.spring(
+            this.state.bounceValue,
+            {
+              toValue: 1,
+              friction: 1,
+            }
+          ).start();
           const deck = result;
-          this.setState({ deck })
+          this.setState((state) => {
+            return {
+              ...state,
+              deck
+            }
+          })
         })
     } else {
       getDeck(this.props.state.routeName)
         .then(result => {
+          this.state.bounceValue.setValue(1.5);
+          Animated.spring(
+            this.state.bounceValue,
+            {
+              toValue: 1,
+              friction: 1,
+            }
+          ).start();
           const deck = result;
-          this.setState({ deck })
+          this.setState((state) => {
+            return {
+              ...state,
+              deck
+            }
+          })
         })
     }
   }
 
   render() {
     const { navigation } = this.props;
-    const { deck } = this.state;
+    const { deck, bounceValue } = this.state;
     return (
       <View style={styles.container}>
         {deck && deck.title !== undefined
           ? <View style={styles.container}>
-            <View style={{ flex: .7, alignItems: 'center', justifyContent: 'center', borderBottomWidth: .3, borderBottomColor: black }}>
-              <Text style={styles.titleText}>{deck.title}</Text>
-              <Text style={styles.baseText}>{deck.questions.length} cards</Text>
+            <View style={[styles.center, { flex: .7, borderBottomWidth: .3, borderBottomColor: black }]}>
+              <Animated.Text style={[styles.titleText, { transform: [{ scale: bounceValue }] }]}>{deck.title}</Animated.Text>
+              <Animated.Text style={[styles.baseText, { transform: [{ scale: bounceValue }] }]}>{deck.questions.length} cards</Animated.Text>
             </View>
             <View style={{ flex: .3, justifyContent: 'center', borderBottomWidth: .3, borderBottomColor: black }}>
               <TouchableOpacity style={styles.AndroidSubmitBtn} onPress={() => navigation.navigate('QuizContainer', { deck })}>
@@ -44,7 +73,7 @@ export default class DeckDetail extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          : <ActivityIndicator style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} />
+          : <ActivityIndicator style={[styles.center, { flex: 1 }]} />
         }
       </View>
     )
@@ -60,7 +89,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 2,
     alignItems: 'center',
-
   },
   submitBtnText: {
     color: white,
