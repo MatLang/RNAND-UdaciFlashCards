@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import { white, blue, black, purple, gray } from '../../utils/colors';
+import { white, black, gray } from '../../utils/colors';
 import { NavigationActions } from 'react-navigation';
 import DeckDetail from './DeckDetail';
 
@@ -16,7 +16,7 @@ const Card = (props) => {
       >
         {title}
       </Text>
-      <Text style={styles.baseText}>{questions.length} cards</Text>
+      <Text style={styles.baseText}>{questions.length} card(s)</Text>
     </View>
   );
 }
