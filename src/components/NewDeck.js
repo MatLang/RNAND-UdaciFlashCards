@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, AsyncStorage } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
-import { white, blue, black, purple } from '../../utils/colors';
+import { purple } from '../../utils/colors';
 import { saveDeckTitle } from '../../utils/api';
 
 export default class NewDeck extends Component {
@@ -13,17 +13,16 @@ export default class NewDeck extends Component {
     };
   };
 
-  render() {
+  setDeckName = ((deckName) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        deckName,
+      }
+    })
+  });
 
-    setDeckName = ((deckName) => {
-      this.setState((state) => {
-        return {
-          ...state,
-          deckName,
-        }
-      })
-    });
-
+  submitDeck = (deck) => {
     const resetAction = NavigationActions.reset({
       index: 0,
       actions: [
@@ -32,41 +31,44 @@ export default class NewDeck extends Component {
       key: 0
     })
 
-    submitDeck = (deck) => {
-      saveDeckTitle(deck).then(() => {
-        this.props.navigation.dispatch(resetAction)
-      })
-    }
+    saveDeckTitle(deck).then(() => {
+      this.props.navigation.dispatch(resetAction)
+    })
+  }
 
-    submitDeck = submitDeck.bind(this);
+  clearDeck = () => {
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home' }),
+      ],
+      key: 0
+    })
 
+    AsyncStorage.clear()
+    .then(() => {
+      this.props.navigation.dispatch(resetAction)
+    });
+  }
+
+  render() {
     return (
-
       <View style={styles.center}>
         <FormLabel>
           Please Enter a Deck Name
         </FormLabel>
         <FormInput
-          onChangeText={(event) => { setDeckName(event) }}
+          onChangeText={(event) => { this.setDeckName(event) }}
         />
         <Button
           title='Submit'
           buttonStyle={styles.submitBtn}
-          onPress={() => {
-            submitDeck(this.state);
-          }
-          }
+          onPress={() => { this.submitDeck(this.state) }}
         />
         <Button
           title='Clear Decks'
           buttonStyle={styles.submitBtn}
-          onPress={() => {
-            AsyncStorage.clear()
-              .then(() => {
-                this.props.navigation.dispatch(resetAction)
-              });
-          }
-          }
+          onPress={() => { this.clearDeck() }}
         />
       </View>
     );
