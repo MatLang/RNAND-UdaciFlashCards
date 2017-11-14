@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { white, blue, black, purple, red, green, gray } from '../../utils/colors';
-import { clearLocalNotification, setLocalNotification } from '../../utils/api';
+import { white, purple, gray } from '../../utils/colors';
+import { clearLocalNotifications, setLocalNotification } from '../../utils/api';
 
 export default class QuizResult extends Component {
   constructor(props) {
     super(props);
-    /*     this.state = {
-          deck,
-          currentQuestion: 0,
-          questionsCorrect: 0,
-          deckLength: deck.questions.length
-        }; */
     this.state = {}
   };
 
   componentDidMount() {
-    clearLocalNotification()
+    clearLocalNotifications()
       .then(() => setLocalNotification())
   }
 
