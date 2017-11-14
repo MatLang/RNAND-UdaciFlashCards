@@ -1,26 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, Platform, Button, AsyncStorage } from 'react-native';
 import { TabNavigator, StackNavigator, NavigationActions } from 'react-navigation';
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons'
+import { setLocalNotification, getCurrentNotification } from './utils/api';
+import { Notifications } from 'expo';
+import { white, blue, black } from './utils/colors';
 import DeckList from './src/components/DeckList';
 import NewDeck from './src/components/NewDeck';
 import NewCard from './src/components/NewCard';
 import QuizContainer from './src/components/QuizContainer';
 import DeckDetail from './src/components/DeckDetail';
-import { setLocalNotification } from './utils/api';
-import { Notifications } from 'expo';
-
-import { white, blue, black, purple } from './utils/colors';
 
 const Tabs = TabNavigator({
   Home: {
     screen: DeckList,
-
     navigationOptions: {
       header: null,
       tabBarLabel: 'Decks',
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='cards' size={30} color="white" />,
-
     }
   },
   NewDeck: {
@@ -89,10 +86,10 @@ const MainNavigator = StackNavigator({
   },
 })
 
-export default class App extends React.Component {
+export default class App extends Component {
 
   componentDidMount() {
-    setLocalNotification();
+    setLocalNotification()
   }
 
   render() {
