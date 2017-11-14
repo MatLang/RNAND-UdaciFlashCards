@@ -24,15 +24,16 @@ export default class NewDeck extends Component {
 
   submitDeck = (deck) => {
     const resetAction = NavigationActions.reset({
-      index: 0,
+      index: 1,
       actions: [
         NavigationActions.navigate({ routeName: 'Home' }),
+        NavigationActions.navigate({ routeName: 'DeckDetail', params: { deck: this.state.deckName } })
       ],
-      key: 0
+      key: 1
     })
 
-    saveDeckTitle(deck).then(() => {
-      this.props.navigation.dispatch(resetAction)
+  saveDeckTitle(deck).then(() => {
+    this.props.navigation.dispatch(resetAction)
     })
   }
 
