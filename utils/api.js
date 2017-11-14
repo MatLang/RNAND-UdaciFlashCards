@@ -20,11 +20,6 @@ const createNotification = () => ({
   }
 });
 
-/* Available Methods:
-cancelAllScheduledNotificationsAsync()
-scheduleLocalNotificationAsync()
-askAsync() */
-
 export function setLocalNotification() {
   AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, AsyncStorage } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
+import { FormLabel, FormInput, Button } from 'react-native-elements';
 import { purple } from '../../utils/colors';
 import { saveDeckTitle } from '../../utils/api';
 
