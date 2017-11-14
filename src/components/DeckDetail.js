@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator, TouchableOpacity, StyleSheet, StackNavigator, Animated } from 'react-native';
+import { Text, View, ActivityIndicator, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { getDeck } from '../../utils/api';
 import NewCard from './NewCard';
 import { white, black, purple, gray } from '../../utils/colors';

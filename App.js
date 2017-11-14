@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Platform, Button, AsyncStorage } from 'react-native';
-import { TabNavigator, StackNavigator, NavigationActions } from 'react-navigation';
+import { StyleSheet, View } from 'react-native';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import { Entypo, MaterialCommunityIcons } from '@expo/vector-icons'
 import { setLocalNotification, getCurrentNotification } from './utils/api';
 import { Notifications } from 'expo';

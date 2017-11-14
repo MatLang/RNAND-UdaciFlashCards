@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 import { white, purple, gray } from '../../utils/colors';
 import { clearLocalNotifications, setLocalNotification } from '../../utils/api';
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { white, black, gray } from '../../utils/colors';
-import { NavigationActions } from 'react-navigation';
 import DeckDetail from './DeckDetail';
 
 const Card = (props) => {

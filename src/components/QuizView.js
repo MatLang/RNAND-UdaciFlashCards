@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 import { white, purple, red, green, gray } from '../../utils/colors';
 
 export default class QuizView extends Component {

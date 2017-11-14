@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button, StyleSheet, ScrollView, FlatList, ActivityIndicator, AsyncStorage } from 'react-native';
+import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { NavigationActions, StackNavigator } from 'react-navigation';
 import Card from './Card';
 import { white } from '../../utils/colors';
