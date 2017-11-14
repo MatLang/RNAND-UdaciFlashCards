@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Button, StyleSheet, ScrollView, FlatList, ActivityIndicator, AsyncStorage } from 'react-native';
 import { NavigationActions, StackNavigator } from 'react-navigation';
 import Card from './Card';
-import { white, blue, black, purple } from '../../utils/colors';
+import { white } from '../../utils/colors';
 import { getDecks } from '../../utils/api';
 
 export default class DeckList extends Component {
@@ -17,7 +17,6 @@ export default class DeckList extends Component {
         const DecksArray = Object.keys(Decks).map(key => {
           const ar = Decks[key]
           ar.key = key
-
           return ar
         })
         this.setState((state) => {
@@ -39,7 +38,6 @@ export default class DeckList extends Component {
 
   render() {
     return (
-
       <View style={styles.container}>
         {this.state.decks !== undefined && typeof this.state.decks === 'object'
           ? <FlatList
@@ -57,11 +55,6 @@ export default class DeckList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    //padding: 10,
     backgroundColor: white
-  },
-  center: {
-    height: 150,
-    justifyContent: 'center',
   },
 })
