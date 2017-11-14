@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { FormLabel, FormInput, FormValidationMessage, Button } from 'react-native-elements';
-import { white, blue, black, purple } from '../../utils/colors';
+import { purple } from '../../utils/colors';
 import { addCardToDeck } from '../../utils/api';
+import { setLocalNotification, getCurrentNotification } from '../../utils/api';
 
 export default class NewCard extends Component {
   constructor(props) {
