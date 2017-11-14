@@ -1,29 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
-import { white, blue, black, purple, red, green, gray } from '../../utils/colors';
+import { white, purple, red, green, gray } from '../../utils/colors';
 
 export default class QuizView extends Component {
   constructor(props) {
     super(props);
-    /*     this.state = {
-          deck,
-          currentQuestion: 0,
-          questionsCorrect: 0,
-          deckLength: deck.questions.length
-        }; */
     this.state = { showAnswer: false }
   };
-
-  componentDidMount() {
-    const { currentQuestion, deck } = this.props.quizStatus;
-    /*     this.state = {
-          deck,
-          currentQuestion: 0,
-          questionsCorrect: 0,
-          deckLength: deck.questions.length
-        }; */
-  }
 
   showAnswer = () => {
     this.setState((state) => {
@@ -35,7 +19,12 @@ export default class QuizView extends Component {
   }
 
   render() {
-    const { currentQuestion, questionsCorrect, deckLength, deck } = this.props.quizStatus;
+    const { 
+      currentQuestion, 
+      questionsCorrect, 
+      deckLength, 
+      deck 
+    } = this.props.quizStatus;
 
     return (
       <View style={styles.container}>
