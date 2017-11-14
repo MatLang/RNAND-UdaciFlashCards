@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, ActivityIndicator, TouchableOpacity, StyleSheet, StackNavigator, Animated } from 'react-native';
 import { getDeck } from '../../utils/api';
 import NewCard from './NewCard';
-import { white, blue, black, purple, gray } from '../../utils/colors';
+import { white, black, purple, gray } from '../../utils/colors';
 
 export default class DeckDetail extends Component {
 
@@ -55,7 +55,10 @@ export default class DeckDetail extends Component {
 
   render() {
     const { navigation } = this.props;
-    const { deck, bounceValue } = this.state;
+    const {
+      deck,
+      bounceValue
+    } = this.state;
     return (
       <View style={styles.container}>
         {deck && deck.title !== undefined
@@ -77,7 +80,6 @@ export default class DeckDetail extends Component {
         }
       </View>
     )
-
   }
 }
 
