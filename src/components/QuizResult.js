@@ -16,7 +16,11 @@ export default class QuizResult extends Component {
   }
 
   render() {
-    const { currentQuestion, questionsCorrect, deckLength, deck } = this.props.quizStatus;
+    const {
+      currentQuestion,
+      questionsCorrect,
+      deckLength, deck
+       } = this.props.quizStatus;
     return (
       <View style={styles.container}>
         <View style={{ flex: .7, justifyContent: 'center' }}>
