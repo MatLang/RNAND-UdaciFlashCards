@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import QuizResult from './QuizResult';
 import QuizView from './QuizView';
-import { white, blue, black, purple, red, green, gray } from '../../utils/colors';
+import { white, red, green, gray } from '../../utils/colors';
 
 export default class QuizContainer extends Component {
   constructor(props) {
@@ -59,7 +59,11 @@ export default class QuizContainer extends Component {
   }
 
   render() {
-    const { currentQuestion, questionsCorrect, deckLength, deck } = this.state;
+    const { 
+      currentQuestion, 
+      questionsCorrect, 
+      deckLength, deck
+     } = this.state;
     return (
       <View style={{ flex: 1 }}>
         {currentQuestion < deckLength || deckLength == 0
