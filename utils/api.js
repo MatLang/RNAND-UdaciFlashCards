@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import { Notifications, Permissions } from 'expo'
 
-export const DECK_STORAGE_KEY = 'UdaciFlashCards'
+const DECK_STORAGE_KEY = 'UdaciFlashCards'
 const NOTIFICATION_KEY = '45';
 
 export function clearLocalNotifications(){
