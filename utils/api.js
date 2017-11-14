@@ -4,9 +4,9 @@ import { Notifications, Permissions } from 'expo'
 const DECK_STORAGE_KEY = 'UdaciFlashCards'
 const NOTIFICATION_KEY = '45';
 
-export function clearLocalNotifications(){
+export function clearLocalNotifications() {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
-  .then(Notifications.cancelAllScheduledNotificationsAsync())
+    .then(Notifications.cancelAllScheduledNotificationsAsync())
 }
 
 const createNotification = () => ({
