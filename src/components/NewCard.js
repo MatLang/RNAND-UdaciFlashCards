@@ -17,25 +17,25 @@ export default class NewCard extends Component {
     };
   };
 
-  render() {
-    setQuestion = ((question) => {
-      this.setState((state) => {
-        return {
-          ...state,
-          question: question
-        }
-      })
-    });
+  setQuestion = ((question) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        question: question
+      }
+    })
+  });
 
-    setAnswer = ((answer) => {
-      this.setState((state) => {
-        return {
-          ...state,
-          answer: answer
-        }
-      })
-    });
+  setAnswer = ((answer) => {
+    this.setState((state) => {
+      return {
+        ...state,
+        answer: answer
+      }
+    })
+  });
 
+  submitQuestion = (deck) => {
     const resetAction = NavigationActions.reset({
       index: 1,
       actions: [
@@ -44,36 +44,31 @@ export default class NewCard extends Component {
       ],
       key: 1
     })
+    return addCardToDeck(deck).then(() => {
+      this.props.navigation.dispatch(resetAction)
+    });
+  }
 
-    submitQuestion = (deck) => {
-      return addCardToDeck(deck).then(() => {
-        this.props.navigation.dispatch(resetAction)
-      });
-    }
-
-    submitQuestion = submitQuestion.bind(this);
-
-
+  render() {
     return (
-
       <View style={styles.center}>
         <FormLabel>
           Please Enter the Question
         </FormLabel>
         <FormInput
-          onChangeText={(event) => { setQuestion(event) }}
+          onChangeText={(event) => { this.setQuestion(event) }}
         />
         <FormLabel>
           Please Enter the Answer
         </FormLabel>
         <FormInput
-          onChangeText={(event) => { setAnswer(event) }}
+          onChangeText={(event) => { this.setAnswer(event) }}
         />
         <Button
           title='Submit'
           buttonStyle={styles.submitBtn}
           onPress={() => {
-            submitQuestion(this.state);
+            this.submitQuestion(this.state);
           }
           }
         />
